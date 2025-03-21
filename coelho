@@ -1,0 +1,28 @@
+package br.com.petshop;
+
+// A classe Coelho herda de Animal
+public class Coelho extends Animal {
+    private String corPelo;
+
+    // Construtor para inicializar Coelho com atributos específicos
+    public Coelho(String nome, int idade, String corPelo) {
+        super(nome, idade);
+        this.corPelo = corPelo;
+    }
+
+    // Método específico para pular
+    public void pular() {
+        System.out.println(getNome() + " está pulando alegremente!");
+    }
+
+    // Sobrescrita do método exibirInfo para incluir a cor do pelo
+    @Override
+    public void exibirInfo() {
+        super.exibirInfo();
+        System.out.println("Cor do Pelo: " + corPelo);
+    }
+}
+
+//Essa classe também herda de Animal possuindo:
+//atributo (pelo)
+//método queimprime a acção de pular do coelho
