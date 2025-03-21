@@ -1,0 +1,29 @@
+package br.com.petshop;
+
+// A classe Passarinho herda de Animal
+public class Passarinho extends Animal {
+    private double envergaduraAsas;
+
+    // Construtor para inicializar Passarinho com atributos específicos
+    public Passarinho(String nome, int idade, double envergaduraAsas) {
+        super(nome, idade);
+        this.envergaduraAsas = envergaduraAsas;
+    }
+
+    // Método específico para cantar
+    public void cantar() {
+        System.out.println(getNome() + " está cantando: Piu Piu!");
+    }
+
+    // Sobrescrita do método exibirInfo para incluir a envergadura das asas
+    @Override
+    public void exibirInfo() {
+        super.exibirInfo();
+        System.out.println("Envergadura das Asas: " + envergaduraAsas + " cm");
+    }
+}
+
+
+//Representa um passarinho e além de apresentar nome e idade, também possui:
+//atributo (tamanho da asa)
+//método cantar 
