@@ -1,0 +1,80 @@
+package br.com.petshop;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PetShop {
+    private List<Animal> animais; // Lista para armazenar os animais
+
+    // Construtor para inicializar a lista de animais
+    public PetShop() {
+        this.animais = new ArrayList<>();
+    }
+
+    // Método para adicionar um animal ao pet shop
+    public void adicionarAnimal(Animal animal) {
+        animais.add(animal);
+        System.out.println(animal.getNome() + " foi adicionado ao PetShop.");
+    }
+
+    // Método para listar todos os animais do pet shop
+    public void listarAnimais() {
+        if (animais.isEmpty()) {
+            System.out.println("O PetShop está vazio no momento.");
+        } else {
+            System.out.println("Lista de Animais no PetShop:");
+            for (Animal animal : animais) {
+                animal.exibirInfo();
+                System.out.println("----------------------");
+            }
+        }
+    }
+
+    // Método para encontrar um animal pelo nome
+    public Animal buscarAnimal(String nome) {
+        for (Animal animal : animais) {
+            if (animal.getNome().equalsIgnoreCase(nome)) {
+                return animal;
+            }
+        }
+        return null;
+    }
+
+    // Método principal para rodar o programa
+    public static void main(String[] args) {
+        PetShop petShop = new PetShop();
+
+        // Criando animais
+        Cachorro cachorro = new Cachorro("Rex", 3, "Labrador");
+        Gato gato = new Gato("Mimi", 2, "Branco");
+        Passarinho passarinho = new Passarinho("Piu", 1, 25.5);
+        Coelho coelho = new Coelho("Bunny", 4, "Marrom");
+
+        // Adicionando animais ao pet shop
+        petShop.adicionarAnimal(cachorro);
+        petShop.adicionarAnimal(gato);
+        petShop.adicionarAnimal(passarinho);
+        petShop.adicionarAnimal(coelho);
+
+        // Listando todos os animais
+        System.out.println("\n=== Animais no PetShop ===");
+        petShop.listarAnimais();
+
+        // Testando métodos específicos
+        System.out.println("\n=== Testando Métodos ===");
+        cachorro.latir();
+        gato.miar();
+        passarinho.cantar();
+        coelho.pular();
+
+        // Buscando um animal pelo nome
+        System.out.println("\n=== Buscando Animal ===");
+        Animal animalEncontrado = petShop.buscarAnimal("Mimi");
+        if (animalEncontrado != null) {
+            System.out.println("Animal encontrado:");
+            animalEncontrado.exibirInfo();
+        } else {
+            System.out.println("Animal não encontrado.");
+        }
+    }
+}
