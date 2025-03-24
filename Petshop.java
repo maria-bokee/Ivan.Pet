@@ -1,181 +1,81 @@
 package br.com.petshop;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Petshop {
-
-}
-
-
-package br.com.petshop;
-
-// Classe base Animal
-public class Animal {
-    private String nome;
-    private int idade;
-
-    // Construtor para inicializar o objeto Animal
-    public Animal(String nome, int idade) {
-        this.nome = nome;
-        this.idade = idade;
+    private List<Animal> animais; 
+ // Lista para armazenar os animais
+    
+ // Construtor para inicializar a lista de animais
+    public Petshop() {
+        this.animais = new ArrayList<>();
     }
 
-    // Métodos para obter os valores dos atributos
-    public String getNome() {
-        return nome;
+ // Método para adicionar um animal ao pet shop
+    public void adicionarAnimal(Animal animal) {
+        animais.add(animal);
+        System.out.println(animal.getNome() + " foi adicionado ao PetShop.");
     }
 
-    public int getIdade() {
-        return idade;
+    // Método para listar todos os animais do pet shop 
+    public void listarAnimais() {
+        if (animais.isEmpty()) {
+            System.out.println("O PetShop está vazio no momento.");
+        } else {
+            System.out.println("Lista de Animais no PetShop:");
+            for (Animal animal : animais) {
+                animal.exibirInfo();
+                System.out.println("----------------------");
+            }
+        }
     }
 
-    // Método para exibir informações do animal
-    public void exibirInfo() {
-        System.out.println("Nome: " + nome + ", Idade: " + idade + " anos");
-    }
-}
-
-
-package br.com.petshop;
-
-// A classe Cachorro herda de Animal
-public class Cachorro extends Animal {
-    private String raca;
-
-    // Construtor para inicializar Cachorro com atributos específicos
-    public Cachorro(String nome, int idade, String raca) {
-        super(nome, idade); // Chama o construtor da classe base (Animal)
-        this.raca = raca;
+    // Método para encontrar um animal pelo nome
+    public Animal buscarAnimal(String nome) {
+        for (Animal animal : animais) {
+            if (animal.getNome().equalsIgnoreCase(nome)) {
+                return animal;
+            }
+        }
+        return null;
     }
 
-    // Método específico para latir
-    public void latir() {
-        System.out.println(getNome() + " está latindo: Au Au!");
-    }
-
-    // Sobrescrita do método exibirInfo para incluir a raça
-    @Override
-    public void exibirInfo() {
-        super.exibirInfo();
-        System.out.println("Raça: " + raca);
-    }
-}
-
-
-package br.com.petshop;
-
-// A classe Gato herda de Animal
-public class Gato extends Animal {
-    private String corPelo;package br.com.petshop;
-
-import java.util.ArrayList;
-import java.util.Scanner;
-
-//Classe principal que gerencia o sistema de cadastro de animal:
-public class PetShop {
+    // Método principal para rodar o programa
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<Animal> animais = new ArrayList<>(); //Lista
-        int opcao;
-        
-        do {
-            //Exibição do menu de opções
-            System.out.println("\n=== Menu ===");
-            System.out.println("1 - Cadast…System.out.println("4 - Sair");
-            System.out.print("Escolha uma opção");
-            opcao = scanner.nextlint();
-            scanner.nextLine(); //Consumir a quebra de linha
-            
-            switch (opcao) {
-            case 1:
-                // Cadastro de um cachorro
+        Petshop Petshop = new Petshop();
 
-                System.out.print("Nome do Cahorro: ");
-                tring nomeCachorro = scanner.nextline();
-                System.out.print("Idade do Cachorro ");
-                int idadeCachorro = scanne
+        // Criando animais
+        Cachorro cachorro = new Cachorro("Rex", 3, "Labrador");
+        Gato gato = new Gato("Mimi", 2, "Branco");
+        Passarinho passarinho = new Passarinho("Piu", 1, 25.5);
+        Coelho coelho = new Coelho("Bunny", 4, "Marrom");
 
-    // Construtor para inicializar Gato com atributos específicos
-    public Gato(String nome, int idade, String corPelo) {
-        super(nome, idade); // Chama o construtor da classe base (Animal)
-        this.corPelo = corPelo;
+        // Adicionando animais ao pet shop
+        Petshop.adicionarAnimal(cachorro);
+        Petshop.adicionarAnimal(gato);
+        Petshop.adicionarAnimal(passarinho);
+        Petshop.adicionarAnimal(coelho);
+
+        // Listando todos os animais
+        System.out.println("\n=== Animais no PetShop ===");
+        Petshop.listarAnimais();
+
+        // Testando métodos específicos
+        System.out.println("\n=== Testando Métodos ===");
+        cachorro.latir();
+        gato.miar();
+        passarinho.cantar();
+        coelho.pular();
+
+        // Buscando um animal pelo nome
+        System.out.println("\n=== Buscando Animal ===");
+        Animal animalEncontrado = Petshop.buscarAnimal("Mimi");
+        if (animalEncontrado != null) {
+            System.out.println("Animal encontrado:");
+            animalEncontrado.exibirInfo();
+        } else {
+            System.out.println("Animal não encontrado.");
+        }
     }
-
-    // Método específico para miar
-    public void miar() {
-        System.out.println(getNome() + " está miando: Miau Miau!");
-    }
-
-    // Sobrescrita do método exibirInfo para incluir a cor do pelo
-    @Override
-    public void exibirInfo() {
-        super.exibirInfo();
-        System.out.println("Cor do Pelo: " + corPelo);
-    }
-}
-
-
-package br.com.petshop;
-
-import java.util.ArrayList;
-import java.util.Scanner;
-
-public class PetShop {
-
-public static void main(String[] args) {
-Scanner scanner = new Scanner(System.in);
-ArrayList<Animal> animais = new ArrayList<>();
-int opcao;
-
-do {
-System.out.println("\nMENU");
-System.out.println("1 - Cadastrar Cachorro");
-System.out.println("2 - Cadastrar Gato");
-System.out.println("3 - Exibir Animais");
-System.out.println("4 - Sair");
-System.out.print("Escolha uma opção:");
-opcao = scanner.nextInt();
-scanner.nextLine();
-
-switch (opcao) {
-case 1:
-System.out.print("Nome do cachorro:");
-String nomeCachorro = scanner.nextLine();
-System.out.print("Idade do cachorro:");
-int idadeCachorro = scanner.nextInt();
-scanner.nextLine();
-System.out.print("Raça do cachorro: ");
-String raca = scanner.nextLine();
-animais.add(new Cachorro(nomeCachorro, idadeCachorro, raca));
-System.out.print("Cachorro cadastrado com sucesso!");
-break;
-case 2:
-System.out.print("Nome do gao:");
-String nomeGato = scanner.nextLine();
-System.out.print("Idade do gato:");
-int idadeGato = scanner.nextInt();
-scanner.nextLine();
-System.out.print("Cor do pelo do gato: ");
-String corPelo = scanner.nextLine();
-animais.add(new Gato(nomeGato, idadeGato, corPelo));
-System.out.print("Gato cadastrado com sucesso!");
-break;
-case 3:
-System.out.println("\n=== Lista de Animais==-");
-for(Animal animal: animais) {
-animal.exibirInfo();
-}
-break;
-case 4:
-System.out.println("Encerrand");
-break;
-default:
-System.out.println("Opção inválida!.");
-break;
-}
-} while (opcao != 4);
-
-
-
-
-}
-
 }
